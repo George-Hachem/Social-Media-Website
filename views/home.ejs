@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "stylesheet" href = "/stylesheets/home_style.css">
+</head>
+<body>
+    
+    <form action="/home" method = "POST">
+    <nav>
+    <div class = "left-points">
+        <h1 class = 'logo'>FitX</h1>
+        <ul>
+            <li>Bell</li>
+            <li>LOL</li>
+            <li>YOO</li>
+        </ul>
+    </div>
+    <div class = "right-points">
+        <div class = "search-box">
+            <input type="text" name = nameSearch placeholder="Search">
+        </div>
+        <div class="search-button">
+            <input type="submit" name = "Search" value="Search">
+        </div>
+
+        
+        <div class = "profile-image">
+             <!-- Add an profile image next to search box on the right -->
+        </div>
+    </div>
+        
+    </nav>
+
+    <div class="container">
+        <div class="left-content">
+            <div class="sec-links">
+                <a href = "home.ejs">Home</a>
+                <a href = "#">Gym near me</a>
+                <a href = "#">Explore</a>
+                <a href = "#">Messages</a>
+                <a href = "#">Notification</a>
+                <a href = "#">Create</a>
+                <a href = "#">Profile</a>
+                <a href = "/">Logout</a>
+            </div>
+            <div class="shortcut-links">
+
+            </div>
+
+        </div>
+        <div class="main-content">
+
+            <div class="write-post">
+                <div class="user-photo">
+                    <img src="https://content.codecademy.com/courses/web-101/web101-image_brownbear.jpg">
+                    <h3>Lol man</h3>
+                </div>
+                <div class="user-textbox">
+                    <textarea rows = "3" maxlength="100" name = "tweet" placeholder="Type your thoughts..."></textarea>
+                </div>
+
+                <div class="send-tweet">
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 32 32" id="send"><path d="M29,13.61,6,1.61a1,1,0,0,0-1.14.15,1,1,0,0,0-.24,1.12l3.75,9a1,1,0,0,0,.92.62H12.5a1,1,0,0,0,0-2H9.92L7.48,4.66,26.34,14.5,7.48,24.34,9.92,18.5H12.5a1,1,0,0,0,0-2H9.25a1,1,0,0,0-.92.62l-3.75,9a1,1,0,0,0,.24,1.12A1,1,0,0,0,6,27.39l23-12a1,1,0,0,0,0-1.78Z"></path><path d="M18.5,14.5a1,1,0,0,0-1-1H4.5a1,1,0,0,0,0,2h13A1,1,0,0,0,18.5,14.5Z"></path></svg> -->
+                    <input type="submit" name = "send-tweet" value = "">
+                </div>
+            </div>
+
+            <div class="current-tweets">
+
+            </div>
+            <br>
+            
+                <% if (userPostsAndFollowedPosts) { %>
+                    <ul>
+                      <% userPostsAndFollowedPosts.forEach(post => { %>
+                        <li>
+                            <div class="main-feed">
+                                <div class="user-photo">
+                                    <img src="https://content.codecademy.com/courses/web-101/web101-image_brownbear.jpg">
+                                    <h3><%= post.userId %></h3>
+                                </div>
+                                <div class="published-tweet">
+                                    <h3><%= post.content %></h3>
+                                </div>
+                            </div>
+                            <br>
+                        </li>
+                      <% }) %>
+                    </ul>
+                  <% } else { %>
+                    <p>No posts available.</p>
+                  <% } %>
+            
+            
+        </div>
+        <div class="right-content"></div>
+    </div>
+
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="feeds">
+                <div class="feed">
+                    <div class="head">
+                        <div class="user">
+                            <div class="profile-photo">
+                                <img src="https://content.codecademy.com/courses/web-101/web101-image_brownbear.jpg">
+                                
+                            </div>
+                            <div class = "user-post">
+                                <h3>Lol Man</h3>
+                                <small>Dubai, 15 min ago</small>
+                            </div>
+                            
+                        </div>
+                        <span class="edit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width = "30" height = "30" id="close"><path d="M15.71,8.29a1,1,0,0,0-1.42,0L12,10.59,9.71,8.29A1,1,0,0,0,8.29,9.71L10.59,12l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l2.29,2.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L13.41,12l2.3-2.29A1,1,0,0,0,15.71,8.29Zm3.36-3.36A10,10,0,1,0,4.93,19.07,10,10,0,1,0,19.07,4.93ZM17.66,17.66A8,8,0,1,1,20,12,7.95,7.95,0,0,1,17.66,17.66Z"></path></svg>
+                        </span>
+                    </div>
+                    <div class="photo">
+                        <img src="https://content.codecademy.com/courses/web-101/web101-image_brownbear.jpg">
+                    </div>
+
+                    <div class="action-buttons">
+                        <div class="interaction-buttons">
+                            <span><svg xmlns="http://www.w3.org/2000/svg" id="like" x="0" y="0" version="1.1" width = "30" height = "30"  xml:space="preserve"><path d="M14.5 25.892a.997.997 0 0 1-.707-.293l-9.546-9.546c-2.924-2.924-2.924-7.682 0-10.606 2.808-2.81 7.309-2.923 10.253-.332 2.942-2.588 7.443-2.479 10.253.332 2.924 2.924 2.924 7.683 0 10.606l-9.546 9.546a.997.997 0 0 1-.707.293zM9.551 5.252a5.486 5.486 0 0 0-3.89 1.608 5.505 5.505 0 0 0 0 7.778l8.839 8.839 8.839-8.839a5.505 5.505 0 0 0 0-7.778 5.505 5.505 0 0 0-7.778 0l-.354.354a.999.999 0 0 1-1.414 0l-.354-.354a5.481 5.481 0 0 0-3.888-1.608z"></path></svg></span>
+                            <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width = "30" height = "30" id="comment"><path fill="#231F20" d="M25.784 21.017A10.992 10.992 0 0 0 27 16c0-6.065-4.935-11-11-11S5 9.935 5 16s4.935 11 11 11c1.742 0 3.468-.419 5.018-1.215l4.74 1.185a.996.996 0 0 0 .949-.263 1 1 0 0 0 .263-.95l-1.186-4.74zm-2.033.11.874 3.498-3.498-.875a1.006 1.006 0 0 0-.731.098A8.99 8.99 0 0 1 16 25c-4.963 0-9-4.038-9-9s4.037-9 9-9 9 4.038 9 9a8.997 8.997 0 0 1-1.151 4.395.995.995 0 0 0-.098.732z"></path></svg></span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
